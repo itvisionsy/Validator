@@ -1,0 +1,17 @@
+{
+    "name": "itvisionsy/validator",
+    "description": "A validator that works.",
+    "authors": [
+        {
+            "name": "Muhannad Shelleh",
+            "email": "muhannad.shelleh@itvision-sy.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "ItvisionSy\\Validator\\": "src/",
+            "ItvisionSy\\Validator\\Tests\\": "test/"
+        }
+    },
+    "require": {}
+}
