@@ -24,14 +24,15 @@ abstract class ValidatorRule implements IValidatorRule {
      * @param mixed $value the value to be validated
      * @return true|string|string[] TRUE if validation succeeded, string or array of errors otherwise.
      */
-    public static function quick($value) {
-        return static::make()->validate($value);
+    public static function quick($value, &$validatorRule = null) {
+        $validatorRule = static::make();
+        return $validatorRule->validate($value);
     }
 
     /**
      * The actual validation logic of the class
      * @param mixed $value the value to be validated
-     * @return true|string|string[] TRUE if validation succeeded, string or array of errors otherwise.
+     * @return true|string|string[] TRUE if validation succeeded, string error or array of string errors otherwise.
      */
     abstract protected function _validate($value);
 
@@ -51,6 +52,11 @@ abstract class ValidatorRule implements IValidatorRule {
         return [];
     }
 
+    /**
+     * Validates a value against the rule
+     * @param mixed $value the value to be validated
+     * @return true|string|string[] TRUE if validation succeeded, string or array of errors otherwise.
+     */
     public function validate($value) {
         $errors = $this->preValidate($value);
         if ($errors === true) {

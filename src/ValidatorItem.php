@@ -20,6 +20,28 @@ class ValidatorItem {
     protected $errors = [];
 
     /**
+     * Instantiates a new ValidatorItem object
+     * @param mixed $value The value to be tested against the rules
+     * @param string[]|string|ValidatorRule|ValidatorRule[] $rules The rules for the value to be tested against
+     * @return \ItvisionSy\Validator\ValidatorItem
+     */
+    public static function make($value, $rules = null) {
+        return new static($value, $rules);
+    }
+
+    /**
+     * Instantiates a new ValidatorItem object and evaludates it
+     * @param mixed $value The value to be tested against the rules
+     * @param string[]|string|ValidatorRule|ValidatorRule[] $rules The rules for the value to be tested against
+     * @param null &$validatorItem a reference value to take the validatorItem object back
+     * @return boolean|array TRUE if the validator succeeded, array of errors otherwise
+     */
+    public static function quick($value, $rules, &$validatorItem = null) {
+        $validatorItem = static::make($value, $rules);
+        return $validatorItem->validate()? : $validatorItem->errors;
+    }
+
+    /**
      * 
      * @param mixed $value The value to be tested against the rules
      * @param string[]|string|ValidatorRule|ValidatorRule[] $rules The rules for the value to be tested against
@@ -75,10 +97,14 @@ class ValidatorItem {
                 $this->setRules($rule);
             }
         } elseif (is_string($rules)) {
-            $ruleClass = implode('', array_map(function($value) {
+            $tempCheck = implode('', array_map(function($value) {
                         return ucfirst((string) $value);
                     }, explode('_', str_replace(['-'], '_', $rules))));
-            $ruleClass = __NAMESPACE__."\\{$ruleClass}ValidatorRule";
+            $possibleSubs = explode('|', $tempCheck);
+            if (count($possibleSubs) > 1) {
+                return $this->setRules($possibleSubs);
+            }
+            $ruleClass = __NAMESPACE__ . "\\{$tempCheck}ValidatorRule";
             $this->rules[] = $ruleClass::make();
         } elseif (is_object($rules) && $rules instanceof ValidatorRule) {
             $this->rules[] = $rules;
@@ -119,16 +145,6 @@ class ValidatorItem {
                 return $this->errors;
                 break;
         }
-    }
-
-    /**
-     * Instantiates a new ValidatorItem object
-     * @param mixed $value The value to be tested against the rules
-     * @param string[]|string|ValidatorRule|ValidatorRule[] $rules The rules for the value to be tested against
-     * @return \ItvisionSy\Validator\ValidatorItem
-     */
-    public static function make($value, $rules = null) {
-        return new static($value, $rules);
     }
 
 }
