@@ -60,7 +60,11 @@ class ValidatorItem {
     public function validate() {
         $errors = [];
         foreach ($this->rules as $rule) {
-            $result = $rule->validate($this->value);
+            if (is_callable($rule)) {
+                $result = $rule($this->value);
+            } else {
+                $result = $rule->validate($this->value);
+            }
             if ($result !== true) {
                 $errors[] = $result;
             }
@@ -91,7 +95,7 @@ class ValidatorItem {
     public function setRules($rules) {
         if (is_array($rules)) {
             foreach ($rules as $rule) {
-                if (!(is_object($rule) && $rule instanceof ValidatorRule || is_string($rule))) {
+                if (!(is_object($rule) && $rule instanceof ValidatorRule || is_string($rule) || is_callable($rule))) {
                     throw new \BadMethodCallException("\$rule should be a valid predefined rule or an instance of \\ItvisionSy\\Validator\\ValidatorRule");
                 }
                 $this->setRules($rule);
@@ -104,9 +108,19 @@ class ValidatorItem {
             if (count($possibleSubs) > 1) {
                 return $this->setRules($possibleSubs);
             }
+            $arguments = explode(":", $tempCheck);
+            if (count($arguments) > 1) {
+                $tempCheck = $arguments[0];
+                $arguments = explode(",", $arguments[1]);
+            } else {
+                $arguments = [];
+            }
             $ruleClass = __NAMESPACE__ . "\\{$tempCheck}ValidatorRule";
-            $this->rules[] = $ruleClass::make();
+            $this->rules[] = $rule = $ruleClass::make();
+            $rule->setParameters($arguments);
         } elseif (is_object($rules) && $rules instanceof ValidatorRule) {
+            $this->rules[] = $rules;
+        } elseif (is_callable($rules)) {
             $this->rules[] = $rules;
         } else {
             throw new \BadMethodCallException("\$rules should be either a string 'rule|rule|rule' or an array [rule,rule,rule] or Itvision\\Validator\\ValidatorRule[]");
