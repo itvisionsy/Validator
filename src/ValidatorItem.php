@@ -3,11 +3,14 @@
 namespace ItvisionSy\Validator;
 
 /**
- * @method mixed value() Gets the value to be tested
- * @method ValidatorItem value($value) Sets the value to be tested
+ * The item validation class.
  * 
- * @method ValidatorRule[] rules() Gets the rules for the value to be tested against
- * @method ValidatorItem rules($value) Sets the rules for the value to be tested against
+ * It is the core class that handles evaluating a single value against multiple rules and getting a list of errors, if any.
+ * 
+ * @author Muhannad Shelleh <muhannad.shelleh@itvision-sy.com>
+ * 
+ * @method ValidatorItem value($value) Sets the value to be tested
+ * @method ValidatorItem rules($rules) Sets the rules for the value to be tested against
  * 
  * @property-read ValidatorRule[] $rules The rules for the value to be tested against
  * @property-read mixed $value The value to be tested
@@ -15,8 +18,20 @@ namespace ItvisionSy\Validator;
  */
 class ValidatorItem {
 
+    /**
+     * The value to be tested
+     * @var mixed
+     */
     protected $value;
+    /**
+     * The rules to be applied to the value
+     * @var mixed[]
+     */
     protected $rules = [];
+    /**
+     * The errors list resulted from the last evaluation of the item
+     * @var string[]
+     */
     protected $errors = [];
 
     /**
@@ -33,7 +48,7 @@ class ValidatorItem {
      * Instantiates a new ValidatorItem object and evaludates it
      * @param mixed $value The value to be tested against the rules
      * @param string[]|string|ValidatorRule|ValidatorRule[] $rules The rules for the value to be tested against
-     * @param null &$validatorItem a reference value to take the validatorItem object back
+     * @param null $validatorItem a reference value to take the validatorItem object back
      * @return boolean|array TRUE if the validator succeeded, array of errors otherwise
      */
     public static function quick($value, $rules, &$validatorItem = null) {

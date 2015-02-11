@@ -3,12 +3,17 @@
 namespace ItvisionSy\Validator;
 
 /**
- * Description of Validator
+ * The bulk validation class.
+ * 
+ * It handles the instantiation and feeding of validation items and rules, and evaluating them.
+ * 
+ * Basically, you will not need to handle other validator classes manually unless you need to customize the validation.
+ * When created, you provide it with the rules and the values, and you will get an associative array of errors if any.
  *
- * @author Muhannad Shelleh
+ * @author Muhannad Shelleh <muhannad.shelleh@itvision-sy.com>
  * 
  * @property-read ValidatorItem[] $items The items to be validated
- * @property-read string[] $errors An array of errors resulted from the last validation. If not errors then empty array
+ * @property-read string[] $errors An array of errors resulted from the last validation. If no errors then empty array
  */
 class Validator {
 
@@ -30,7 +35,7 @@ class Validator {
      * Quickly creats and validates a set of values against a set of rules
      * @param array $rules Array[key=>rules,...] to be checked against
      * @param array $values Array[key=>value,...] to be tested
-     * @param null &$validator a reference variable to receive the validator object back
+     * @param null $validator a reference variable to receive the validator object back
      * @return boolean|array TRUE if validation succeeded, array of errors otherwise
      */
     public static function quick(array $rules, array $values, &$validator = null) {

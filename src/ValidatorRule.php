@@ -3,15 +3,31 @@
 namespace ItvisionSy\Validator;
 
 /**
- * Description of ValidatorRule
+ * The core class to be inherited by actual rules. 
+ * 
+ * It provides a skeleton and minimize the work needed by other classes.
+ * Inherited rules will just have to implement the _validator, preferrably override the $args protected array.
  *
- * @author muhannad
+ * @author Muhannad Shelleh <muhannad.shelleh@itvision-sy.com>
  */
 abstract class ValidatorRule implements \ArrayAccess {
 
     const VALUE_IS_NOT_PROVIDED_AT_ALL = "ItvisionSy\\Validator\\Validator\\CONST::VALUE_IS_NOT_PROVIDED_AT_ALL";
 
+    /**
+     * The parameters to be used for validation. They will be passed when instantiation of the rule object.
+     * Parameters can be accessed using their 0-based index: i.e. $this->_0 gets the first parameters.
+     * 
+     * If $args is also defined, the same parameters can be accessed using the opposite value in the $args array.
+     * 
+     * @var mixed[]
+     */
     protected $parameters = [];
+    /**
+     * Providing this array as a simple strings list allows named access to parameters instead of 0-based index.
+     * i.e. suppose $args=['min','max'] and $parameters=[15,99], using $this->min return 15 and $this->max returns 99
+     * @var string[]
+     */
     protected $args = [];
 
     /**
@@ -31,6 +47,9 @@ abstract class ValidatorRule implements \ArrayAccess {
 
     /**
      * Quickly instantiate a ValidatorRule and runs it against a value
+     * 
+     * It is a shorthand for rule::make($parameters)->validate($value);
+     * 
      * @param mixed $value the value to be validated
      * @param array $parameters a map of values for the ValidatorRule to use in validation. Any key/value pair will be available as a direct attribute.
      * @param null $ValidatorRule A reference variable to take the ValidatorRule back

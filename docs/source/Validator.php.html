@@ -1,0 +1,145 @@
+<html>
+    <head>
+        <script
+            type="text/javascript"
+            src="../js/jquery-1.4.2.min.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../syntax_highlighter/scripts/shCore.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../syntax_highlighter/scripts/shBrushJScript.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../syntax_highlighter/scripts/shBrushPhp.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../syntax_highlighter/scripts/shBrushXml.js">
+        </script>
+        <link
+            href="../syntax_highlighter/styles/shCore.css" rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../syntax_highlighter/styles/shCoreEclipse.css"
+            rel="stylesheet" type="text/css"
+        />
+        <link
+            href="../syntax_highlighter/styles/shThemeWordpress.css"
+            rel="stylesheet" type="text/css"
+        />
+    </head>
+    <body>
+        <pre class="brush: php">&lt;?php
+
+namespace ItvisionSy\Validator;
+
+/**
+ * The bulk validation class.
+ * 
+ * It handles the instantiation and feeding of validation items and rules, and evaluating them.
+ * 
+ * Basically, you will not need to handle other validator classes manually unless you need to customize the validation.
+ * When created, you provide it with the rules and the values, and you will get an associative array of errors if any.
+ *
+ * @author Muhannad Shelleh &lt;muhannad.shelleh@itvision-sy.com&gt;
+ * 
+ * @property-read ValidatorItem[] $items The items to be validated
+ * @property-read string[] $errors An array of errors resulted from the last validation. If no errors then empty array
+ */
+class Validator {
+
+    protected $items = [];
+    protected $errors = [];
+    protected $values = [];
+
+    /**
+     * Creates a validator
+     * @param array $rules Array[key=&gt;rules,...] to be checked against
+     * @param array $values Array[key=&gt;value,...] to be tested
+     * @return Validator A validator object
+     */
+    public static function make(array $rules = null, array $values = null) {
+        return new static($rules, $values);
+    }
+
+    /**
+     * Quickly creats and validates a set of values against a set of rules
+     * @param array $rules Array[key=&gt;rules,...] to be checked against
+     * @param array $values Array[key=&gt;value,...] to be tested
+     * @param null $validator a reference variable to receive the validator object back
+     * @return boolean|array TRUE if validation succeeded, array of errors otherwise
+     */
+    public static function quick(array $rules, array $values, &amp;$validator = null) {
+        $validator = static::make($rules, $values);
+        return $validator-&gt;validate()? : $validator-&gt;errors;
+    }
+
+    /**
+     * 
+     * @param array $rules Array[key=&gt;rules,...] to be checked against
+     * @param array $values Array[key=&gt;value,...] to be tested
+     */
+    public function __construct(array $rules = null, array $values = null) {
+        if ($values &amp;&amp; is_array($values)) {
+            $this-&gt;values = $values;
+        }
+        if ($rules &amp;&amp; is_array($rules)) {
+            foreach ($rules as $key =&gt; $itemRules) {
+                $value = array_key_exists($key, $this-&gt;values) ? $this-&gt;values[$key] : ValidatorRule::VALUE_IS_NOT_PROVIDED_AT_ALL;
+                $this-&gt;item($key, $value, $itemRules);
+            }
+        }
+    }
+
+    /**
+     * Adds a new item to the validation
+     * @param string|integer $key The key to be validated
+     * @param mixed $value The value to be tested against the rules
+     * @param string[]|string|ValidatorRule|ValidatorRule[] $rules The rules for the value to be tested against
+     * @return \ItvisionSy\Validator\Validator
+     */
+    public function item($key, $value, $rules = null) {
+        $this-&gt;items[$key] = ValidatorItem::make($value, $rules);
+        return $this;
+    }
+
+    /**
+     * Validates all the items
+     * @return boolean TRUE if all validation failed, FALSE otherwise. Error information can be accessed by the $errors property
+     */
+    public function validate() {
+        $errors = [];
+        foreach ($this-&gt;items as $key =&gt; $item) {
+            if (!$item-&gt;validate()) {
+                $errors[$key] = $item-&gt;errors;
+            }
+        }
+        $this-&gt;errors = $errors;
+        return count($errors) == 0;
+    }
+
+    public function __get($name) {
+        switch ($name) {
+            case 'items':
+                return $this-&gt;items;
+            case 'errors':
+                return $this-&gt;errors;
+                break;
+        }
+    }
+
+}
+</pre>
+        <script type="text/javascript">
+             SyntaxHighlighter.all();
+             jQuery('.gutter div').each(function(key, data){
+                jQuery(data).prepend('<a name="L'+jQuery(data).text()+'"/>');
+             });
+        </script>
+    </body>
+</html>

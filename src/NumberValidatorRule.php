@@ -5,7 +5,7 @@ namespace ItvisionSy\Validator;
 /**
  * Description of NumberValidatorRule
  *
- * @author muhannad
+ * @author Muhannad Shelleh <muhannad.shelleh@itvision-sy.com>
  */
 class NumberValidatorRule extends ValidatorRule {
 

@@ -5,7 +5,7 @@ namespace ItvisionSy\Validator;
 /**
  * Description of DomainValidatorRule
  *
- * @author muhannad
+ * @author Muhannad Shelleh <muhannad.shelleh@itvision-sy.com>
  */
 class DomainValidatorRule extends ValidatorRule {
 

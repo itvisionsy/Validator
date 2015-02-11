@@ -8,7 +8,7 @@ use \PHPUnit_Framework_TestCase;
 /**
  * Description of ValidatorItemTest
  *
- * @author muhannad
+ * @author Muhannad Shelleh <muhannad.shelleh@itvision-sy.com>
  */
 class ValidatorItemTest extends PHPUnit_Framework_TestCase {
 

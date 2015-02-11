@@ -1,0 +1,214 @@
+<html>
+    <head>
+        <script
+            type="text/javascript"
+            src="../js/jquery-1.4.2.min.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../syntax_highlighter/scripts/shCore.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../syntax_highlighter/scripts/shBrushJScript.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../syntax_highlighter/scripts/shBrushPhp.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../syntax_highlighter/scripts/shBrushXml.js">
+        </script>
+        <link
+            href="../syntax_highlighter/styles/shCore.css" rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../syntax_highlighter/styles/shCoreEclipse.css"
+            rel="stylesheet" type="text/css"
+        />
+        <link
+            href="../syntax_highlighter/styles/shThemeWordpress.css"
+            rel="stylesheet" type="text/css"
+        />
+    </head>
+    <body>
+        <pre class="brush: php">&lt;?php
+
+namespace ItvisionSy\Validator;
+
+/**
+ * The item validation class.
+ * 
+ * It is the core class that handles evaluating a single value against multiple rules and getting a list of errors, if any.
+ * 
+ * @author Muhannad Shelleh &lt;muhannad.shelleh@itvision-sy.com&gt;
+ * 
+ * @method mixed value()Gets the value to be tested
+ * @method ValidatorItem value($value) Sets the value to be tested
+ * @method ValidatorRule[] rules() Gets the rules for the value to be tested against
+ * @method ValidatorItem rules($value) Sets the rules for the value to be tested against
+ * 
+ * @property-read ValidatorRule[] $rules The rules for the value to be tested against
+ * @property-read mixed $value The value to be tested
+ * @property-read string[] $errors An array of errors resulted from the last validation. If not errors then empty array
+ */
+class ValidatorItem {
+
+    protected $value;
+    protected $rules = [];
+    protected $errors = [];
+
+    /**
+     * Instantiates a new ValidatorItem object
+     * @param mixed $value The value to be tested against the rules
+     * @param string[]|string|ValidatorRule|ValidatorRule[] $rules The rules for the value to be tested against
+     * @return \ItvisionSy\Validator\ValidatorItem
+     */
+    public static function make($value, $rules = null) {
+        return new static($value, $rules);
+    }
+
+    /**
+     * Instantiates a new ValidatorItem object and evaludates it
+     * @param mixed $value The value to be tested against the rules
+     * @param string[]|string|ValidatorRule|ValidatorRule[] $rules The rules for the value to be tested against
+     * @param null $validatorItem a reference value to take the validatorItem object back
+     * @return boolean|array TRUE if the validator succeeded, array of errors otherwise
+     */
+    public static function quick($value, $rules, &amp;$validatorItem = null) {
+        $validatorItem = static::make($value, $rules);
+        return $validatorItem-&gt;validate()? : $validatorItem-&gt;errors;
+    }
+
+    /**
+     * 
+     * @param mixed $value The value to be tested against the rules
+     * @param string[]|string|ValidatorRule|ValidatorRule[] $rules The rules for the value to be tested against
+     */
+    public function __construct($value, $rules = null) {
+        $this-&gt;value = $value;
+        if ($rules) {
+            $this-&gt;setRules($rules);
+        }
+    }
+
+    /**
+     * Validates the value against the rules
+     * @return boolean TRUE if the validation succeeded, FALSE otherwise.
+     */
+    public function validate() {
+        $errors = [];
+        foreach ($this-&gt;rules as $rule) {
+            if (is_callable($rule)) {
+                $result = $rule($this-&gt;value);
+            } else {
+                $result = $rule-&gt;validate($this-&gt;value);
+            }
+            if ($result !== true) {
+                $errors[] = $result;
+            }
+        }
+        $this-&gt;errors = $errors;
+        return count($errors) == 0;
+    }
+
+    /**
+     * Resets the rules to empty set, or optionally to a new set of rules.
+     * @param string[]|string|ValidatorRule|ValidatorRule[] $rules The rules for the value to be tested against
+     * @return \ItvisionSy\Validator\ValidatorItem
+     */
+    public function resetRules($rules = null) {
+        $this-&gt;rules = [];
+        if ($rules) {
+            $this-&gt;setRules($rules);
+        }
+        return $this;
+    }
+
+    /**
+     * Sets the rules for the value to be tested against
+     * @param string[]|string|ValidatorRule|ValidatorRule[] $rules The rules for the value to be tested against
+     * @return \ItvisionSy\Validator\ValidatorItem
+     * @throws \BadMethodCallException
+     */
+    public function setRules($rules) {
+        if (is_array($rules)) {
+            foreach ($rules as $rule) {
+                if (!(is_object($rule) &amp;&amp; $rule instanceof ValidatorRule || is_string($rule) || is_callable($rule))) {
+                    throw new \BadMethodCallException(&quot;\$rule should be a valid predefined rule or an instance of \\ItvisionSy\\Validator\\ValidatorRule&quot;);
+                }
+                $this-&gt;setRules($rule);
+            }
+        } elseif (is_string($rules)) {
+            $tempCheck = implode('', array_map(function($value) {
+                        return ucfirst((string) $value);
+                    }, explode('_', str_replace(['-'], '_', $rules))));
+            $possibleSubs = explode('|', $tempCheck);
+            if (count($possibleSubs) &gt; 1) {
+                return $this-&gt;setRules($possibleSubs);
+            }
+            $arguments = explode(&quot;:&quot;, $tempCheck);
+            if (count($arguments) &gt; 1) {
+                $tempCheck = $arguments[0];
+                $arguments = explode(&quot;,&quot;, $arguments[1]);
+            } else {
+                $arguments = [];
+            }
+            $ruleClass = __NAMESPACE__ . &quot;\\{$tempCheck}ValidatorRule&quot;;
+            $this-&gt;rules[] = $rule = $ruleClass::make();
+            $rule-&gt;setParameters($arguments);
+        } elseif (is_object($rules) &amp;&amp; $rules instanceof ValidatorRule) {
+            $this-&gt;rules[] = $rules;
+        } elseif (is_callable($rules)) {
+            $this-&gt;rules[] = $rules;
+        } else {
+            throw new \BadMethodCallException(&quot;\$rules should be either a string 'rule|rule|rule' or an array [rule,rule,rule] or Itvision\\Validator\\ValidatorRule[]&quot;);
+        }
+        return $this;
+    }
+
+    public function __call($name, $arguments) {
+        switch ($name) {
+            case 'value':
+                if (count($arguments) &gt; 0) {
+                    return call_user_func_array([$this, 'setValue'], $arguments);
+                } else {
+                    return $this-&gt;getValue();
+                }
+                break;
+            case 'rules':
+                if (count($arguments) &gt; 0) {
+                    return call_user_func_array([$this, 'setRules'], $arguments);
+                } else {
+                    return $this-&gt;getRules();
+                }
+                break;
+        }
+    }
+
+    public function __get($name) {
+        switch ($name) {
+            case 'value':
+                return $this-&gt;value;
+                break;
+            case 'rules':
+                return $this-&gt;rules;
+                break;
+            case 'errors':
+                return $this-&gt;errors;
+                break;
+        }
+    }
+
+}
+</pre>
+        <script type="text/javascript">
+             SyntaxHighlighter.all();
+             jQuery('.gutter div').each(function(key, data){
+                jQuery(data).prepend('<a name="L'+jQuery(data).text()+'"/>');
+             });
+        </script>
+    </body>
+</html>
