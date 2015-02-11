@@ -5,7 +5,7 @@ namespace ItvisionSy\Validator;
 /**
  * Description of EmailValidatorRule
  *
- * @author muhannad
+ * @author Muhannad Shelleh <muhannad.shelleh@itvision-sy.com>
  */
 class EmailValidatorRule extends ValidatorRule {
 

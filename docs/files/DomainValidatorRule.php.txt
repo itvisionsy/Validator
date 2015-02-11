@@ -1,0 +1,28 @@
+<?php
+
+namespace ItvisionSy\Validator;
+
+/**
+ * Description of DomainValidatorRule
+ *
+ * @author Muhannad Shelleh <muhannad.shelleh@itvision-sy.com>
+ */
+class DomainValidatorRule extends ValidatorRule {
+
+    protected $args = ['domain'];
+
+    protected function _validate($value) {
+
+        if (count(explode('@', $value)) > 1) {
+            list($dump, $domain) = explode('@', $value);
+            return $this->domain === $domain? : "Value does not match the required domain {$this->domain}";
+        } else {
+            $parts = parse_url($value);
+            $host = @$parts['host']? : '';
+            $domain = substr($host, -strlen($this->domain));
+            return $this->domain === $domain? : "Value does not match the required domain {$this->domain}";
+        }
+    }
+
+}
+

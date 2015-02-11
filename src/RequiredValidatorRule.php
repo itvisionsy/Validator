@@ -5,7 +5,7 @@ namespace ItvisionSy\Validator;
 /**
  * Description of RequiredValidatorRule
  *
- * @author muhannad
+ * @author Muhannad Shelleh <muhannad.shelleh@itvision-sy.com>
  */
 class RequiredValidatorRule extends ValidatorRule {
     

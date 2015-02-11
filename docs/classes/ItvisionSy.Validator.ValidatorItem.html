@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta charset="utf-8"/>
+    <title>API Documentation</title>
+    <meta name="author" content=""/>
+    <meta name="description" content=""/>
+
+    <link href="../css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/prism.css" rel="stylesheet" media="all"/>
+    <link href="../css/template.css" rel="stylesheet" media="all"/>
+    
+    <!--[if lt IE 9]>
+    <script src="../js/html5.js"></script>
+    <![endif]-->
+    <script src="../js/jquery-1.11.0.min.js"></script>
+    <script src="../js/ui/1.10.4/jquery-ui.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/jquery.smooth-scroll.js"></script>
+    <script src="../js/prism.min.js"></script>
+    <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
+    <script type="text/javascript">
+    function loadExternalCodeSnippets() {
+        Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function (pre) {
+            var src = pre.getAttribute('data-src');
+            var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
+            var language = 'php';
+
+            var code = document.createElement('code');
+            code.className = 'language-' + language;
+
+            pre.textContent = '';
+
+            code.textContent = 'Loading…';
+
+            pre.appendChild(code);
+
+            var xhr = new XMLHttpRequest();
+
+            xhr.open('GET', src, true);
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4) {
+
+                    if (xhr.status < 400 && xhr.responseText) {
+                        code.textContent = xhr.responseText;
+
+                        Prism.highlightElement(code);
+                    }
+                    else if (xhr.status >= 400) {
+                        code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
+                    }
+                    else {
+                        code.textContent = '✖ Error: File does not exist or is empty';
+                    }
+                }
+            };
+
+            xhr.send(null);
+        });
+    }
+
+    $(document).ready(function(){
+        loadExternalCodeSnippets();
+    });
+    $('#source-view').on('shown', function () {
+        loadExternalCodeSnippets();
+    })
+</script>
+
+    <link rel="shortcut icon" href="../images/favicon.ico"/>
+    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png"/>
+    <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
+    <link rel="apple-touch-icon" sizes="114x114" href="../images/apple-touch-icon-114x114.png"/>
+</head>
+<body>
+
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <i class="icon-ellipsis-vertical"></i>
+            </a>
+            <a class="brand" href="../index.html">API Documentation</a>
+
+            <div class="nav-collapse">
+                <ul class="nav pull-right">
+                                        <li class="dropdown">
+                        <a href="../index.html" class="dropdown-toggle" data-toggle="dropdown">
+                            API Documentation <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                                                        <li><a href="../namespaces/ItvisionSy.html">\ItvisionSy</a></li>
+                                                    </ul>
+                    </li>
+                                        <li class="dropdown" id="charts-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Charts <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../graphs/class.html">
+                                    <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown" id="reports-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Reports <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../reports/errors.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">83</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/markers.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">0</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/deprecated.html">
+                                                                                                            <i class="icon-list-alt"></i>&#160;Deprecated <span class="label label-info pull-right">0</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--<div class="go_to_top">-->
+    <!--<a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>-->
+    <!--</div>-->
+</div>
+
+<div id="___" class="container-fluid">
+        <section class="row-fluid">
+        <div class="span2 sidebar">
+                                <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-762032083"></a>
+                                <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
+            </div>
+            <div id="namespace-762032083" class="accordion-body collapse in">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1278235998"></a>
+                                <a href="../namespaces/ItvisionSy.html" style="margin-left: 30px; padding-left: 0">ItvisionSy</a>
+            </div>
+            <div id="namespace-1278235998" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1875600025"></a>
+                                <a href="../namespaces/ItvisionSy.Validator.html" style="margin-left: 30px; padding-left: 0">Validator</a>
+            </div>
+            <div id="namespace-1875600025" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/ItvisionSy.Validator.DomainValidatorRule.html">DomainValidatorRule</a></li>
+                                                    <li class="class"><a href="../classes/ItvisionSy.Validator.EmailValidatorRule.html">EmailValidatorRule</a></li>
+                                                    <li class="class"><a href="../classes/ItvisionSy.Validator.InValidatorRule.html">InValidatorRule</a></li>
+                                                    <li class="class"><a href="../classes/ItvisionSy.Validator.MaxValidatorRule.html">MaxValidatorRule</a></li>
+                                                    <li class="class"><a href="../classes/ItvisionSy.Validator.MinValidatorRule.html">MinValidatorRule</a></li>
+                                                    <li class="class"><a href="../classes/ItvisionSy.Validator.NotInValidatorRule.html">NotInValidatorRule</a></li>
+                                                    <li class="class"><a href="../classes/ItvisionSy.Validator.NumberValidatorRule.html">NumberValidatorRule</a></li>
+                                                    <li class="class"><a href="../classes/ItvisionSy.Validator.PatternValidatorRule.html">PatternValidatorRule</a></li>
+                                                    <li class="class"><a href="../classes/ItvisionSy.Validator.RequiredValidatorRule.html">RequiredValidatorRule</a></li>
+                                                    <li class="class"><a href="../classes/ItvisionSy.Validator.StringValidatorRule.html">StringValidatorRule</a></li>
+                                                    <li class="class"><a href="../classes/ItvisionSy.Validator.UrlValidatorRule.html">UrlValidatorRule</a></li>
+                                                    <li class="class"><a href="../classes/ItvisionSy.Validator.Validator.html">Validator</a></li>
+                                                    <li class="class"><a href="../classes/ItvisionSy.Validator.ValidatorItem.html">ValidatorItem</a></li>
+                                                    <li class="class"><a href="../classes/ItvisionSy.Validator.ValidatorRule.html">ValidatorRule</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        </div>
+    </section>
+    <section class="row-fluid">
+        <div class="span10 offset2">
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <nav>
+                                                <a href="../namespaces/ItvisionSy.Validator.html">\ItvisionSy\Validator</a> <i class="icon-level-up"></i>
+                                            </nav>
+                    <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
+
+                    <h1><small>\ItvisionSy\Validator</small>ValidatorItem</h1>
+                    <p><em>The item validation class.</em></p>
+                    <p>It is the core class that handles evaluating a single value against multiple rules and getting a list of errors, if any.</p>
+                    
+                                        
+                    <section id="summary">
+                        <h2>Summary</h2>
+                        <section class="row-fluid heading">
+                            <section class="span4">
+                                <a href="#methods">Methods</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#properties">Properties</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#constants">Constants</a>
+                            </section>
+                        </section>
+                        <section class="row-fluid public">
+                            <section class="span4">
+                                                                    <a href="../classes/ItvisionSy.Validator.ValidatorItem.html#method_make" class="">make()</a><br />
+                                                                    <a href="../classes/ItvisionSy.Validator.ValidatorItem.html#method_quick" class="">quick()</a><br />
+                                                                    <a href="../classes/ItvisionSy.Validator.ValidatorItem.html#method___construct" class="">__construct()</a><br />
+                                                                    <a href="../classes/ItvisionSy.Validator.ValidatorItem.html#method_validate" class="">validate()</a><br />
+                                                                    <a href="../classes/ItvisionSy.Validator.ValidatorItem.html#method_resetRules" class="">resetRules()</a><br />
+                                                                    <a href="../classes/ItvisionSy.Validator.ValidatorItem.html#method_setRules" class="">setRules()</a><br />
+                                                                    <a href="../classes/ItvisionSy.Validator.ValidatorItem.html#method___call" class="">__call()</a><br />
+                                                                    <a href="../classes/ItvisionSy.Validator.ValidatorItem.html#method___get" class="">__get()</a><br />
+                                                                    <a href="../classes/ItvisionSy.Validator.ValidatorItem.html#method_value" class="">value()</a><br />
+                                                                    <a href="../classes/ItvisionSy.Validator.ValidatorItem.html#method_rules" class="">rules()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <a href="../classes/ItvisionSy.Validator.ValidatorItem.html#property_rules" class="">$rules</a><br />
+                                                                    <a href="../classes/ItvisionSy.Validator.ValidatorItem.html#property_value" class="">$value</a><br />
+                                                                    <a href="../classes/ItvisionSy.Validator.ValidatorItem.html#property_errors" class="">$errors</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No constants found</em>
+                                                            </section>
+                        </section>
+                        <section class="row-fluid protected">
+                            <section class="span4">
+                                                                    <em>No protected methods found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <a href="../classes/ItvisionSy.Validator.ValidatorItem.html#property_value" class="">$value</a><br />
+                                                                    <a href="../classes/ItvisionSy.Validator.ValidatorItem.html#property_rules" class="">$rules</a><br />
+                                                                    <a href="../classes/ItvisionSy.Validator.ValidatorItem.html#property_errors" class="">$errors</a><br />
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                        <section class="row-fluid private">
+                            <section class="span4">
+                                                                    <em>No private methods found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No private properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                    </section>
+                </div>
+                <aside class="span4 detailsbar">
+                                        
+                    
+                    <dl>
+                        <dt>File</dt>
+                            <dd><a href="../files/ValidatorItem.html"><div class="path-wrapper">ValidatorItem.php</div></a></dd>
+                                                <dt>Package</dt>
+                            <dd><div class="namespace-wrapper">Default</div></dd>
+                                                <dt>Class hierarchy</dt>
+                            <dd class="hierarchy">
+                                                                                                                                                                    <div class="namespace-wrapper">\ItvisionSy\Validator\ValidatorItem</div>
+                            </dd>
+
+                        
+                        
+                        
+                        
+                                                                        </dl>
+                    <h2>Tags</h2>
+                    <table class="table table-condensed">
+                                            <tr>
+                            <th>
+                                author
+                            </th>
+                            <td>
+                                                                    <p>Muhannad Shelleh <a href="mailto:muhannad.shelleh@itvision-sy.com">muhannad.shelleh@itvision-sy.com</a></p>
+                                                            </td>
+                        </tr>
+                                        </table>
+                </aside>
+            </div>
+
+                        
+                                    <a id="properties" name="properties"></a>
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <h2>Properties</h2>
+                </div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_rules" name="property_rules" class="anchor"></a>
+            <article class="property">
+                <h3 class="public ">$rules</h3>
+                <pre class="signature">$rules : array&lt;mixed,\ItvisionSy\Validator\ValidatorRule&gt;</pre>
+                <p><em></em></p>
+                <p>The rules for the value to be tested against</p>
+
+                                <h4>Type</h4>
+                array&lt;mixed,\ItvisionSy\Validator\ValidatorRule&gt;
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_value" name="property_value" class="anchor"></a>
+            <article class="property">
+                <h3 class="public ">$value</h3>
+                <pre class="signature">$value : mixed</pre>
+                <p><em></em></p>
+                <p>The value to be tested</p>
+
+                                <h4>Type</h4>
+                mixed
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_errors" name="property_errors" class="anchor"></a>
+            <article class="property">
+                <h3 class="public ">$errors</h3>
+                <pre class="signature">$errors : array&lt;mixed,string&gt;</pre>
+                <p><em></em></p>
+                <p>An array of errors resulted from the last validation. If not errors then empty array</p>
+
+                                <h4>Type</h4>
+                array&lt;mixed,string&gt;
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_value" name="property_value" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$value</h3>
+                <pre class="signature">$value : mixed</pre>
+                <p><em>The value to be tested</em></p>
+                
+
+                                <h4>Type</h4>
+                mixed
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_rules" name="property_rules" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$rules</h3>
+                <pre class="signature">$rules : array&lt;mixed,mixed&gt;</pre>
+                <p><em>The rules to be applied to the value</em></p>
+                
+
+                                <h4>Type</h4>
+                array&lt;mixed,mixed&gt;
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_errors" name="property_errors" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$errors</h3>
+                <pre class="signature">$errors : array&lt;mixed,string&gt;</pre>
+                <p><em>The errors list resulted from the last evaluation of the item</em></p>
+                
+
+                                <h4>Type</h4>
+                array&lt;mixed,string&gt;
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                            
+                                    <a id="methods" name="methods"></a>
+            <div class="row-fluid">
+                <div class="span8 content class"><h2>Methods</h2></div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_make" name="method_make" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">make()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">make(mixed  <span class="argument">$value</span>, array&lt;mixed,string&gt;|string|\ItvisionSy\Validator\ValidatorRule|array&lt;mixed,\ItvisionSy\Validator\ValidatorRule&gt;  <span class="argument">$rules = null</span>) : \ItvisionSy\Validator\ValidatorItem</pre>
+                <p><em>Instantiates a new ValidatorItem object</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$value </td>
+                                <td><p>The value to be tested against the rules</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>array&lt;mixed,string&gt;|string|<a href="../classes/ItvisionSy.Validator.ValidatorRule.html">\ItvisionSy\Validator\ValidatorRule</a>|array&lt;mixed,<a href="../classes/ItvisionSy.Validator.ValidatorRule.html">\ItvisionSy\Validator\ValidatorRule</a>&gt;</td>
+                                <td>$rules </td>
+                                <td><p>The rules for the value to be tested against</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/ItvisionSy.Validator.ValidatorItem.html">\ItvisionSy\Validator\ValidatorItem</a>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_quick" name="method_quick" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">quick()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">quick(mixed  <span class="argument">$value</span>, array&lt;mixed,string&gt;|string|\ItvisionSy\Validator\ValidatorRule|array&lt;mixed,\ItvisionSy\Validator\ValidatorRule&gt;  <span class="argument">$rules</span>, null  <span class="argument">$validatorItem = null</span>) : boolean|array</pre>
+                <p><em>Instantiates a new ValidatorItem object and evaludates it</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$value </td>
+                                <td><p>The value to be tested against the rules</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>array&lt;mixed,string&gt;|string|<a href="../classes/ItvisionSy.Validator.ValidatorRule.html">\ItvisionSy\Validator\ValidatorRule</a>|array&lt;mixed,<a href="../classes/ItvisionSy.Validator.ValidatorRule.html">\ItvisionSy\Validator\ValidatorRule</a>&gt;</td>
+                                <td>$rules </td>
+                                <td><p>The rules for the value to be tested against</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>null</td>
+                                <td>$validatorItem </td>
+                                <td><p>a reference value to take the validatorItem object back</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    boolean|array
+                                            &mdash; <p>TRUE if the validator succeeded, array of errors otherwise</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method___construct" name="method___construct" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">__construct()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">__construct(mixed  <span class="argument">$value</span>, array&lt;mixed,string&gt;|string|\ItvisionSy\Validator\ValidatorRule|array&lt;mixed,\ItvisionSy\Validator\ValidatorRule&gt;  <span class="argument">$rules = null</span>) </pre>
+                <p><em></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$value </td>
+                                <td><p>The value to be tested against the rules</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>array&lt;mixed,string&gt;|string|<a href="../classes/ItvisionSy.Validator.ValidatorRule.html">\ItvisionSy\Validator\ValidatorRule</a>|array&lt;mixed,<a href="../classes/ItvisionSy.Validator.ValidatorRule.html">\ItvisionSy\Validator\ValidatorRule</a>&gt;</td>
+                                <td>$rules </td>
+                                <td><p>The rules for the value to be tested against</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_validate" name="method_validate" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">validate()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">validate() : boolean</pre>
+                <p><em>Validates the value against the rules</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                            &mdash; <p>TRUE if the validation succeeded, FALSE otherwise.</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_resetRules" name="method_resetRules" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">resetRules()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">resetRules(array&lt;mixed,string&gt;|string|\ItvisionSy\Validator\ValidatorRule|array&lt;mixed,\ItvisionSy\Validator\ValidatorRule&gt;  <span class="argument">$rules = null</span>) : \ItvisionSy\Validator\ValidatorItem</pre>
+                <p><em>Resets the rules to empty set, or optionally to a new set of rules.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>array&lt;mixed,string&gt;|string|<a href="../classes/ItvisionSy.Validator.ValidatorRule.html">\ItvisionSy\Validator\ValidatorRule</a>|array&lt;mixed,<a href="../classes/ItvisionSy.Validator.ValidatorRule.html">\ItvisionSy\Validator\ValidatorRule</a>&gt;</td>
+                                <td>$rules </td>
+                                <td><p>The rules for the value to be tested against</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/ItvisionSy.Validator.ValidatorItem.html">\ItvisionSy\Validator\ValidatorItem</a>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setRules" name="method_setRules" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setRules()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setRules(array&lt;mixed,string&gt;|string|\ItvisionSy\Validator\ValidatorRule|array&lt;mixed,\ItvisionSy\Validator\ValidatorRule&gt;  <span class="argument">$rules</span>) : \ItvisionSy\Validator\ValidatorItem</pre>
+                <p><em>Sets the rules for the value to be tested against</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>array&lt;mixed,string&gt;|string|<a href="../classes/ItvisionSy.Validator.ValidatorRule.html">\ItvisionSy\Validator\ValidatorRule</a>|array&lt;mixed,<a href="../classes/ItvisionSy.Validator.ValidatorRule.html">\ItvisionSy\Validator\ValidatorRule</a>&gt;</td>
+                                <td>$rules </td>
+                                <td><p>The rules for the value to be tested against</p></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\BadMethodCallException</dt>
+                            <dd></dd>
+                                                                    </dl>
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/ItvisionSy.Validator.ValidatorItem.html">\ItvisionSy\Validator\ValidatorItem</a>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method___call" name="method___call" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">__call()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">__call(  <span class="argument">$name</span>,   <span class="argument">$arguments</span>) </pre>
+                <p><em></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>$name </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td></td>
+                                <td>$arguments </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method___get" name="method___get" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">__get()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">__get(  <span class="argument">$name</span>) </pre>
+                <p><em></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>$name </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_value" name="method_value" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">value()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">value(mixed  <span class="argument">$value</span>) : \ItvisionSy\Validator\ValidatorItem</pre>
+                <p><em></em></p>
+                <p>Sets the value to be tested</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$value </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    \ItvisionSy\Validator\ValidatorItem
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_rules" name="method_rules" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">rules()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">rules(mixed  <span class="argument">$rules</span>) : \ItvisionSy\Validator\ValidatorItem</pre>
+                <p><em></em></p>
+                <p>Sets the rules for the value to be tested against</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$rules </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    \ItvisionSy\Validator\ValidatorItem
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                                    </div>
+    </section>
+
+    <div id="source-view" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="source-view-label" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="source-view-label">ValidatorItem.php</h3>
+        </div>
+        <div class="modal-body">
+            <pre data-src="../files/ValidatorItem.php.txt" class="language-php line-numbers"></pre>
+        </div>
+    </div>
+
+    <footer class="row-fluid">
+        <section class="span10 offset2">
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <section class="row-fluid footer-sections">
+                        <section class="span4">
+                                                        <h1><i class="icon-code"></i></h1>
+                            <div>
+                                <ul>
+                                                                            <li><a href="../namespaces/ItvisionSy.html">\ItvisionSy</a></li>
+                                                                    </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-bar-chart"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../graphs/class.html">Class Hierarchy Diagram</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-pushpin"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../reports/errors.html">Errors</a></li>
+                                    <li><a href="../reports/markers.html">Markers</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                    </section>
+                </section>
+            </section>
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <hr />
+                    Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
+                    on February 11th, 2015 at 08:09.
+                </section>
+            </section>
+        </section>
+    </footer>
+</div>
+
+</body>
+</html>

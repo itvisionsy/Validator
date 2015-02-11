@@ -5,7 +5,7 @@ namespace ItvisionSy\Validator;
 /**
  * Description of UrlValidatorRule
  *
- * @author muhannad
+ * @author Muhannad Shelleh <muhannad.shelleh@itvision-sy.com>
  */
 class UrlValidatorRule extends ValidatorRule {
 

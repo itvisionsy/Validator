@@ -7,7 +7,7 @@ use ItvisionSy\Validator;
 /**
  * Description of ValidatorTest
  *
- * @author muhannad
+ * @author Muhannad Shelleh <muhannad.shelleh@itvision-sy.com>
  */
 class ValidatorTest extends PHPUnit_Framework_TestCase {
 

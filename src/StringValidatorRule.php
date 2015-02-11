@@ -5,7 +5,7 @@ namespace ItvisionSy\Validator;
 /**
  * Description of StringValidatorRule
  *
- * @author muhannad
+ * @author Muhannad Shelleh <muhannad.shelleh@itvision-sy.com>
  */
 class StringValidatorRule extends ValidatorRule {
 

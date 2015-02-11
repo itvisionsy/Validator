@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<title>Class ItvisionSy\Validator\Validator</title>
+
+	<link rel="stylesheet" href="resources/style.css?e99947befd7bf673c6b43ff75e9e0f170c88a60e">
+
+</head>
+
+<body>
+<div id="left">
+	<div id="menu">
+		<a href="index.html" title="Overview"><span>Overview</span></a>
+
+
+		<div id="groups">
+				<h3>Namespaces</h3>
+			<ul>
+				<li class="active">
+					<a href="namespace-ItvisionSy.html">
+						ItvisionSy<span></span>
+					</a>
+
+						<ul>
+				<li class="active">
+					<a href="namespace-ItvisionSy.Validator.html">
+						Validator					</a>
+
+						</li>
+							</ul></li>
+			</ul>
+		</div>
+
+		<hr>
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li><a href="class-ItvisionSy.Validator.DomainValidatorRule.html">DomainValidatorRule</a></li>
+				<li><a href="class-ItvisionSy.Validator.EmailValidatorRule.html">EmailValidatorRule</a></li>
+				<li><a href="class-ItvisionSy.Validator.InValidatorRule.html">InValidatorRule</a></li>
+				<li><a href="class-ItvisionSy.Validator.MaxValidatorRule.html">MaxValidatorRule</a></li>
+				<li><a href="class-ItvisionSy.Validator.MinValidatorRule.html">MinValidatorRule</a></li>
+				<li><a href="class-ItvisionSy.Validator.NotInValidatorRule.html">NotInValidatorRule</a></li>
+				<li><a href="class-ItvisionSy.Validator.NumberValidatorRule.html">NumberValidatorRule</a></li>
+				<li><a href="class-ItvisionSy.Validator.PatternValidatorRule.html">PatternValidatorRule</a></li>
+				<li><a href="class-ItvisionSy.Validator.RequiredValidatorRule.html">RequiredValidatorRule</a></li>
+				<li><a href="class-ItvisionSy.Validator.StringValidatorRule.html">StringValidatorRule</a></li>
+				<li><a href="class-ItvisionSy.Validator.UrlValidatorRule.html">UrlValidatorRule</a></li>
+				<li class="active"><a href="class-ItvisionSy.Validator.Validator.html">Validator</a></li>
+				<li><a href="class-ItvisionSy.Validator.ValidatorItem.html">ValidatorItem</a></li>
+				<li><a href="class-ItvisionSy.Validator.ValidatorRule.html">ValidatorRule</a></li>
+			</ul>
+
+
+
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+<div id="rightInner">
+	<form id="search">
+		<input type="hidden" name="cx" value="">
+		<input type="hidden" name="ie" value="UTF-8">
+		<input type="text" name="q" class="text" placeholder="Search">
+	</form>
+
+	<div id="navigation">
+		<ul>
+			<li>
+				<a href="index.html" title="Overview"><span>Overview</span></a>
+			</li>
+			<li>
+				<a href="namespace-ItvisionSy.Validator.html" title="Summary of ItvisionSy\Validator"><span>Namespace</span></a>
+			</li>
+			<li class="active">
+<span>Class</span>			</li>
+		</ul>
+		<ul>
+		</ul>
+		<ul>
+		</ul>
+	</div>
+
+<div id="content" class="class">
+	<h1>Class Validator</h1>
+
+
+	<div class="description">
+	<p>The bulk validation class.</p>
+
+<p>It handles the instantiation and feeding of validation items and rules, and evaluating them.</p>
+
+<p>Basically, you will not need to handle other validator classes manually unless you need to customize the validation.
+When created, you provide it with the rules and the values, and you will get an associative array of errors if any.</p>
+	</div>
+
+
+
+
+
+
+
+
+
+	<div class="info">
+		
+		
+		<b>Namespace:</b> <a href="namespace-ItvisionSy.html">ItvisionSy</a>\<a href="namespace-ItvisionSy.Validator.html">Validator</a><br>
+		
+
+				<b>Author:</b>
+				Muhannad Shelleh <a href="&#x6d;&#x61;&#105;&#108;&#x74;&#x6f;&#58;&#109;&#117;&#x68;&#x61;&#110;&#110;a&#x64;&#x2e;&#115;&#104;e&#x6c;&#x6c;&#101;&#104;&#x40;&#x69;&#116;&#118;&#105;&#x73;&#x69;&#111;&#110;-&#x73;&#x79;&#46;&#99;o&#x6d;">&#109;&#117;&#x68;&#x61;&#110;&#110;a&#x64;&#x2e;&#115;&#104;e&#x6c;&#x6c;&#101;&#104;&#x40;&#x69;&#116;&#118;&#105;&#x73;&#x69;&#111;&#110;-&#x73;&#x79;&#46;&#99;o&#x6d;</a><br>
+			<b>Located at</b> <a href="source-class-ItvisionSy.Validator.Validator.html#5-100" title="Go to source code">Validator.php</a>
+		<br>
+	</div>
+
+
+
+	<table class="summary methods" id="methods">
+	<caption>Methods summary</caption>
+	<tr data-order="make" id="_make">
+
+		<td class="attributes"><code>
+			 public static
+
+			<code><a href="class-ItvisionSy.Validator.Validator.html">ItvisionSy\Validator\Validator</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_make">#</a>
+		<code><a href="source-class-ItvisionSy.Validator.Validator.html#24-32" title="Go to source code">make</a>( <span>array <var>$rules</var> = <span class="php-keyword1">null</span></span>, <span>array <var>$values</var> = <span class="php-keyword1">null</span></span> )</code>
+
+		<div class="description short">
+			<p>Creates a validator</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Creates a validator</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$rules</var></dt>
+					<dd>Array[key=>rules,...] to be checked against</dd>
+					<dt><var>$values</var></dt>
+					<dd>Array[key=>value,...] to be tested</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><a href="class-ItvisionSy.Validator.Validator.html">ItvisionSy\Validator\Validator</a></code><br>A validator object
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="quick" id="_quick">
+
+		<td class="attributes"><code>
+			 public static
+
+			boolean|array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_quick">#</a>
+		<code><a href="source-class-ItvisionSy.Validator.Validator.html#34-44" title="Go to source code">quick</a>( <span>array <var>$rules</var></span>, <span>array <var>$values</var></span>, <span>null <var>&amp; $validator</var> = <span class="php-keyword1">null</span></span> )</code>
+
+		<div class="description short">
+			<p>Quickly creats and validates a set of values against a set of rules</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Quickly creats and validates a set of values against a set of rules</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$rules</var></dt>
+					<dd>Array[key=>rules,...] to be checked against</dd>
+					<dt><var>$values</var></dt>
+					<dd>Array[key=>value,...] to be tested</dd>
+					<dt><var>$validator</var></dt>
+					<dd>a reference variable to receive the validator object back</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					boolean|array<br>TRUE if validation succeeded, array of errors otherwise
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="__construct" id="___construct">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#___construct">#</a>
+		<code><a href="source-class-ItvisionSy.Validator.Validator.html#46-61" title="Go to source code">__construct</a>( <span>array <var>$rules</var> = <span class="php-keyword1">null</span></span>, <span>array <var>$values</var> = <span class="php-keyword1">null</span></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$rules</var></dt>
+					<dd>Array[key=>rules,...] to be checked against</dd>
+					<dt><var>$values</var></dt>
+					<dd>Array[key=>value,...] to be tested</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="item" id="_item">
+
+		<td class="attributes"><code>
+			 public 
+
+			<code><a href="class-ItvisionSy.Validator.Validator.html">ItvisionSy\Validator\Validator</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_item">#</a>
+		<code><a href="source-class-ItvisionSy.Validator.Validator.html#63-73" title="Go to source code">item</a>( <span>string|integer <var>$key</var></span>, <span>mixed <var>$value</var></span>, <span>string[]|string|<code><a href="class-ItvisionSy.Validator.ValidatorRule.html">ItvisionSy\Validator\ValidatorRule</a></code>|<code><a href="class-ItvisionSy.Validator.ValidatorRule.html">ItvisionSy\Validator\ValidatorRule</a>[]</code> <var>$rules</var> = <span class="php-keyword1">null</span></span> )</code>
+
+		<div class="description short">
+			<p>Adds a new item to the validation</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Adds a new item to the validation</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$key</var></dt>
+					<dd>The key to be validated</dd>
+					<dt><var>$value</var></dt>
+					<dd>The value to be tested against the rules</dd>
+					<dt><var>$rules</var></dt>
+					<dd>The rules for the value to be tested against</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><a href="class-ItvisionSy.Validator.Validator.html">ItvisionSy\Validator\Validator</a></code>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="validate" id="_validate">
+
+		<td class="attributes"><code>
+			 public 
+
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_validate">#</a>
+		<code><a href="source-class-ItvisionSy.Validator.Validator.html#75-88" title="Go to source code">validate</a>( )</code>
+
+		<div class="description short">
+			<p>Validates all the items</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Validates all the items</p>
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					boolean<br>TRUE if all validation failed, FALSE otherwise. Error information can be accessed by the $errors property
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="__get" id="___get">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#___get">#</a>
+		<code><a href="source-class-ItvisionSy.Validator.Validator.html#90-98" title="Go to source code">__get</a>( <span> <var>$name</var></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+
+
+
+
+
+
+	<table class="summary properties" id="properties">
+	<caption>Properties summary</caption>
+	<tr data-order="items" id="$items">
+		<td class="attributes"><code>
+			protected  
+			array
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-ItvisionSy.Validator.Validator.html#20" title="Go to source code"><var>$items</var></a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$items" class="anchor">#</a>
+				<code>[]</code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="errors" id="$errors">
+		<td class="attributes"><code>
+			protected  
+			array
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-ItvisionSy.Validator.Validator.html#21" title="Go to source code"><var>$errors</var></a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$errors" class="anchor">#</a>
+				<code>[]</code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="values" id="$values">
+		<td class="attributes"><code>
+			protected  
+			array
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-ItvisionSy.Validator.Validator.html#22" title="Go to source code"><var>$values</var></a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$values" class="anchor">#</a>
+				<code>[]</code>
+			</div>
+		</td>
+	</tr>
+	</table>
+
+
+
+
+
+
+</div>
+
+	<div id="footer">
+		 API documentation generated by <a href="http://apigen.org">ApiGen</a>
+	</div>
+</div>
+</div>
+<script src="resources/combined.js"></script>
+<script src="elementlist.js"></script>
+</body>
+</html>
